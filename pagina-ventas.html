@@ -1,0 +1,1916 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Refugio Interior | Un espacio para volver a la calma</title>
+
+<meta name="description" content="Refugio Interior: mini app interactiva y programa de 21 días para comprender tus pensamientos, gestionar tus emociones y cultivar momentos de calma.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root {
+    --bg: #F8F5F0;
+    --cream: #F0EAE1;
+    --white: #FFFFFF;
+    --sage: #9EAD9A;
+    --sage-dark: #657B6A;
+    --sage-light: #E5EBE2;
+    --brown: #51483F;
+    --text: #48443F;
+    --muted: #827B73;
+    --gold: #C6A77A;
+    --dark: #35463C;
+    --border: #E7E0D7;
+    --shadow: 0 15px 45px rgba(65, 70, 60, .08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    line-height: 1.2;
+    color: var(--brown);
+}
+
+p {
+    color: var(--muted);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    width: min(1100px, 90%);
+    margin: auto;
+}
+
+section {
+    padding: 85px 0;
+}
+
+.section-label {
+    color: var(--sage-dark);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 11px;
+    font-weight: 800;
+    margin-bottom: 17px;
+}
+
+.section-title {
+    font-size: clamp(30px, 5vw, 46px);
+    margin-bottom: 20px;
+}
+
+.section-description {
+    max-width: 650px;
+    margin: auto;
+    font-size: 16px;
+}
+
+.center {
+    text-align: center;
+}
+
+/* BOTONES */
+
+.btn {
+    display: inline-block;
+    padding: 17px 30px;
+    border-radius: 50px;
+    background: var(--sage-dark);
+    color: white;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: .5px;
+    text-align: center;
+    transition: .3s;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(75, 105, 82, .17);
+}
+
+.btn:hover {
+    background: var(--dark);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(75, 105, 82, .22);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--sage-dark);
+    color: var(--sage-dark);
+    box-shadow: none;
+}
+
+.btn-outline:hover {
+    color: white;
+}
+
+/* NAVBAR */
+
+.navbar {
+    padding: 19px 0;
+    background: rgba(248,245,240,.94);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    color: var(--dark);
+    font-weight: 600;
+    letter-spacing: .3px;
+}
+
+.logo span {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+}
+
+/* HERO */
+
+.hero {
+    padding: 85px 0 95px;
+    background:
+        radial-gradient(circle at 80% 20%, #E5EBDD 0%, transparent 35%),
+        linear-gradient(135deg, #F8F5F0, #F1EEE7);
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    align-items: center;
+    gap: 60px;
+}
+
+.hero h1 {
+    font-size: clamp(40px, 6vw, 65px);
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    color: var(--sage-dark);
+}
+
+.hero-subtitle {
+    font-size: 17px;
+    line-height: 1.8;
+    max-width: 540px;
+    margin-bottom: 30px;
+}
+
+.hero-tag {
+    display: inline-block;
+    background: var(--sage-light);
+    color: var(--sage-dark);
+    padding: 8px 15px;
+    border-radius: 30px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+}
+
+.hero-note {
+    font-size: 12px;
+    margin-top: 15px;
+}
+
+.hero-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 410px;
+}
+
+.hero-circle {
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #E8EDE4, #CFDCCB);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 25px 70px rgba(75, 105, 82, .14);
+    position: relative;
+}
+
+.hero-circle::before {
+    content: "";
+    position: absolute;
+    width: 255px;
+    height: 255px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,.8);
+}
+
+.hero-circle-content {
+    text-align: center;
+    z-index: 2;
+}
+
+.hero-symbol {
+    font-size: 75px;
+    color: var(--sage-dark);
+    line-height: 1;
+    margin-bottom: 15px;
+}
+
+.hero-circle-content h3 {
+    font-size: 27px;
+}
+
+.hero-circle-content p {
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin-top: 8px;
+}
+
+.floating-card {
+    position: absolute;
+    background: white;
+    padding: 15px 20px;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    font-size: 12px;
+    color: var(--brown);
+}
+
+.card-one {
+    top: 30px;
+    right: 0;
+}
+
+.card-two {
+    bottom: 35px;
+    left: 0;
+}
+
+/* BULLETS */
+
+.power-section {
+    background: white;
+}
+
+.power-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 45px;
+}
+
+.power-card {
+    padding: 25px;
+    background: var(--bg);
+    border-radius: 17px;
+    display: flex;
+    gap: 17px;
+    align-items: flex-start;
+    border: 1px solid var(--border);
+    transition: .3s;
+}
+
+.power-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+}
+
+.power-icon {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    background: var(--sage-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--sage-dark);
+    font-size: 19px;
+}
+
+.power-card h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    margin-bottom: 6px;
+}
+
+.power-card p {
+    font-size: 13px;
+}
+
+/* PRICE */
+
+.price-section {
+    background: var(--dark);
+    color: white;
+    text-align: center;
+    padding: 75px 0;
+}
+
+.price-section h2 {
+    color: white;
+    font-size: 38px;
+}
+
+.price-section p {
+    color: #E0E7DF;
+    margin: 15px auto 25px;
+    max-width: 550px;
+}
+
+.old-price {
+    text-decoration: line-through;
+    opacity: .65;
+}
+
+.new-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 65px;
+    color: #E4D0AC;
+    font-weight: 700;
+    margin: 8px 0;
+}
+
+.price-section .btn {
+    background: #D6C19E;
+    color: var(--dark);
+}
+
+.price-section .btn:hover {
+    background: white;
+}
+
+/* CTA */
+
+.cta-inline {
+    text-align: center;
+    padding: 45px 15px;
+}
+
+/* QUALIFICATION */
+
+.qualification {
+    background: var(--cream);
+}
+
+.check-list {
+    max-width: 720px;
+    margin: 35px auto;
+    display: grid;
+    gap: 16px;
+}
+
+.check-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: white;
+    padding: 19px 22px;
+    border-radius: 13px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.025);
+}
+
+.check {
+    color: var(--sage-dark);
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.qualification-note {
+    text-align: center;
+    color: var(--sage-dark);
+    font-weight: 700;
+}
+
+/* PROBLEM */
+
+.problem {
+    background: white;
+}
+
+.problem-box {
+    max-width: 800px;
+    margin: 35px auto 0;
+    padding: 40px;
+    background: var(--bg);
+    border-radius: 20px;
+    border-left: 4px solid var(--sage);
+}
+
+.problem-box p {
+    margin-bottom: 17px;
+    font-size: 15px;
+}
+
+.problem-box p:last-child {
+    margin-bottom: 0;
+}
+
+/* SOLUTION */
+
+.solution {
+    background: var(--sage-light);
+}
+
+.solution-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 45px;
+    align-items: center;
+}
+
+.solution-card {
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: var(--shadow);
+}
+
+.solution-card h3 {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.solution-step {
+    padding: 17px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.solution-step:last-child {
+    border: none;
+}
+
+.solution-step strong {
+    display: block;
+    color: var(--sage-dark);
+    margin-bottom: 5px;
+}
+
+.solution-step p {
+    font-size: 13px;
+}
+
+/* METHOD */
+
+.method {
+    background: white;
+}
+
+.method-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-top: 45px;
+}
+
+.method-card {
+    padding: 30px 25px;
+    background: var(--bg);
+    border-radius: 18px;
+    border-top: 3px solid var(--sage);
+}
+
+.method-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    color: var(--sage);
+    margin-bottom: 12px;
+}
+
+.method-card h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+.method-card p {
+    font-size: 13px;
+}
+
+/* URGENCY */
+
+.urgency {
+    background: var(--cream);
+    text-align: center;
+}
+
+.urgency h2 {
+    max-width: 700px;
+    margin: auto;
+}
+
+.urgency-text {
+    max-width: 650px;
+    margin: 25px auto;
+}
+
+.urgency-text p {
+    margin-bottom: 12px;
+}
+
+/* BONUSES */
+
+.bonuses {
+    background: white;
+}
+
+.bonus-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    margin-top: 45px;
+}
+
+.bonus-card {
+    padding: 30px;
+    background: var(--bg);
+    border-radius: 18px;
+    border: 1px solid var(--border);
+    position: relative;
+    transition: .3s;
+}
+
+.bonus-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+.bonus-label {
+    color: var(--sage-dark);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.bonus-card h3 {
+    font-size: 24px;
+    margin-bottom: 12px;
+}
+
+.bonus-card strong {
+    display: block;
+    color: var(--brown);
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.bonus-card p {
+    font-size: 13px;
+}
+
+/* TESTIMONIALS */
+
+.testimonials {
+    background: var(--sage-light);
+}
+
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.testimonial {
+    background: white;
+    border-radius: 18px;
+    padding: 25px;
+}
+
+.testimonial small {
+    color: var(--sage-dark);
+    font-weight: 800;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.testimonial p {
+    font-size: 14px;
+    margin: 15px 0;
+    color: var(--brown);
+    font-style: italic;
+}
+
+.testimonial strong {
+    font-size: 12px;
+}
+
+/* ACCESS */
+
+.access {
+    background: white;
+}
+
+.access-box {
+    max-width: 700px;
+    margin: 40px auto;
+    background: var(--bg);
+    border-radius: 20px;
+    padding: 35px;
+    border: 1px solid var(--border);
+}
+
+.access-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+}
+
+.access-row:last-of-type {
+    border: none;
+}
+
+.access-row span:last-child {
+    font-weight: 700;
+    color: var(--sage-dark);
+}
+
+.access-total {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid var(--sage);
+}
+
+.access-total .total {
+    font-size: 19px;
+    font-weight: 800;
+    color: var(--brown);
+}
+
+.savings {
+    text-align: center;
+    margin-top: 30px;
+    color: var(--sage-dark);
+    font-weight: 800;
+}
+
+.final-price {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    color: var(--dark);
+    margin: 10px 0 25px;
+}
+
+/* GUARANTEE */
+
+.guarantee {
+    background: var(--cream);
+}
+
+.guarantee-card {
+    max-width: 760px;
+    margin: auto;
+    text-align: center;
+    padding: 45px;
+    background: white;
+    border-radius: 22px;
+    box-shadow: var(--shadow);
+}
+
+.guarantee-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.guarantee-card p {
+    margin-top: 15px;
+}
+
+/* FAQ */
+
+.faq {
+    background: white;
+}
+
+.faq-container {
+    max-width: 800px;
+    margin: 40px auto 0;
+}
+
+details {
+    border-bottom: 1px solid var(--border);
+    padding: 20px 5px;
+}
+
+summary {
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--brown);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+summary::after {
+    content: "+";
+    color: var(--sage-dark);
+    font-size: 20px;
+}
+
+details[open] summary::after {
+    content: "?";
+}
+
+details p {
+    margin-top: 15px;
+    font-size: 14px;
+    max-width: 700px;
+}
+
+/* FINAL */
+
+.final-section {
+    background:
+        radial-gradient(circle at 50% 0%, #637968, transparent 65%),
+        var(--dark);
+    padding: 100px 0;
+    text-align: center;
+}
+
+.final-section h2 {
+    color: white;
+    font-size: clamp(34px, 5vw, 49px);
+    max-width: 750px;
+    margin: auto;
+}
+
+.final-section p {
+    color: #E5EAE3;
+    margin: 25px auto;
+    max-width: 600px;
+}
+
+.final-section .btn {
+    background: #D6C19E;
+    color: var(--dark);
+}
+
+.final-section .btn:hover {
+    background: white;
+}
+
+/* FOOTER */
+
+footer {
+    background: #29382F;
+    text-align: center;
+    padding: 35px 15px;
+}
+
+footer p {
+    font-size: 11px;
+    color: #C5CEC5;
+    margin: 6px;
+}
+
+footer a {
+    color: #E5D4B5;
+}
+
+/* ANIMATIONS */
+
+.fade-up {
+    animation: fadeUp .8s ease both;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 800px) {
+
+    section {
+        padding: 65px 0;
+    }
+
+    .hero {
+        padding: 60px 0;
+    }
+
+    .hero-grid,
+    .solution-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .hero h1 {
+        font-size: 43px;
+    }
+
+    .hero-visual {
+        min-height: 350px;
+    }
+
+    .hero-circle {
+        width: 270px;
+        height: 270px;
+    }
+
+    .hero-circle::before {
+        width: 220px;
+        height: 220px;
+    }
+
+    .floating-card {
+        font-size: 10px;
+    }
+
+    .power-grid,
+    .bonus-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .method-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .testimonial-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .price-section h2 {
+        font-size: 31px;
+    }
+
+    .access-box {
+        padding: 22px;
+    }
+
+    .guarantee-card {
+        padding: 30px 22px;
+    }
+
+    .nav-inner .btn {
+        padding: 12px 17px;
+        font-size: 10px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+}
+
+@media(max-width: 380px) {
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .new-price {
+        font-size: 55px;
+    }
+
+    .floating-card {
+        padding: 10px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+    <div class="container nav-inner">
+
+        <a href="#" class="logo">
+            Refugio Interior
+            <span>Mind & Soul</span>
+        </a>
+
+        <a href="#comprar" class="btn">
+            ACCEDER
+        </a>
+
+    </div>
+</nav>
+
+
+<!-- HERO -->
+
+<header class="hero">
+
+    <div class="container hero-grid">
+
+        <div class="fade-up">
+
+            <div class="hero-tag">
+                MIND & SOUL EXPERIENCE
+            </div>
+
+            <h1>
+                Deja de vivir agotado por <span>tu propia mente.</span>
+            </h1>
+
+            <p class="hero-subtitle">
+                Una mini app interactiva que identifica los pensamientos que te desgastan y te guía hacia una respuesta más tranquila, acompañada de un programa práctico de 21 días.
+            </p>
+
+            <a href="#comprar" class="btn">
+                QUIERO ENCONTRAR CALMA ?
+            </a>
+
+            <p class="hero-note">
+                Herramientas prácticas · Versión cristiana y secular · Acceso digital
+            </p>
+
+        </div>
+
+
+        <div class="hero-visual">
+
+            <div class="hero-circle">
+
+                <div class="hero-circle-content">
+
+                    <div class="hero-symbol">?</div>
+
+                    <h3>Refugio</h3>
+
+                    <p>INTERIOR</p>
+
+                </div>
+
+            </div>
+
+            <div class="floating-card card-one">
+                ? Un momento para ti
+            </div>
+
+            <div class="floating-card card-two">
+                ? Tu espacio de calma
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- BULLETS -->
+
+<section class="power-section">
+
+    <div class="container">
+
+        <div class="center">
+
+            <div class="section-label">
+                TU ESPACIO PERSONAL
+            </div>
+
+            <h2 class="section-title">
+                Herramientas para esos momentos en los que tu mente no descansa.
+            </h2>
+
+        </div>
+
+
+        <div class="power-grid">
+
+            <div class="power-card">
+
+                <div class="power-icon">?</div>
+
+                <div>
+                    <h3>Filtro de Pensamientos</h3>
+
+                    <p>
+                        Detecta cuándo estás confundiendo miedo con realidad.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="power-card">
+
+                <div class="power-icon">?</div>
+
+                <div>
+                    <h3>Ciclo de Anticipación</h3>
+
+                    <p>
+                        Reconoce los patrones que alimentan tus preocupaciones.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="power-card">
+
+                <div class="power-icon">?</div>
+
+                <div>
+                    <h3>Calma SOS</h3>
+
+                    <p>
+                        Un ejercicio guiado de 30 segundos para hacer una pausa.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="power-card">
+
+                <div class="power-icon">?</div>
+
+                <div>
+                    <h3>Preguntas Socráticas</h3>
+
+                    <p>
+                        Examina tus pensamientos con preguntas que te ayudan a considerar otras perspectivas.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="power-card">
+
+                <div class="power-icon">?</div>
+
+                <div>
+                    <h3>Programa de 21 días</h3>
+
+                    <p>
+                        Ejercicios prácticos para desarrollar nuevas respuestas emocionales.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="power-card">
+
+                <div class="power-icon">?</div>
+
+                <div>
+                    <h3>Dos experiencias</h3>
+
+                    <p>
+                        Elige una versión cristiana con fundamento bíblico o una versión secular.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PRICE -->
+
+<section class="price-section">
+
+    <div class="container">
+
+        <div class="section-label" style="color:#D6C19E">
+            TU NUEVO ESPACIO PERSONAL
+        </div>
+
+        <h2>Tu bienestar también merece un espacio.</h2>
+
+        <p>
+            Accede a la mini app, el libro de 21 días y las cuatro herramientas adicionales.
+        </p>
+
+        <div class="old-price">
+            Valor de referencia: $97 USD
+        </div>
+
+        <div class="new-price">
+            $27
+        </div>
+
+        <p>Acceso digital a todos los componentes incluidos.</p>
+
+        <a href="#comprar" class="btn">
+            QUIERO MI ACCESO ?
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- QUALIFICATION -->
+
+<section class="qualification">
+
+    <div class="container">
+
+        <div class="center">
+
+            <div class="section-label">
+                IDENTIFÍCATE
+            </div>
+
+            <h2 class="section-title">
+                ¿Esto es para mí?
+            </h2>
+
+            <p class="section-description">
+                Tal vez reconozcas más de una de estas situaciones.
+            </p>
+
+        </div>
+
+
+        <div class="check-list">
+
+            <div class="check-item">
+                <span class="check">?</span>
+                <span>Te acuestas cansado, pero tu cabeza sigue repasando conversaciones y problemas.</span>
+            </div>
+
+            <div class="check-item">
+                <span class="check">?</span>
+                <span>Piensas demasiado en cosas que todavía no han sucedido.</span>
+            </div>
+
+            <div class="check-item">
+                <span class="check">?</span>
+                <span>Te dices que debes tranquilizarte, pero no sabes cómo hacerlo.</span>
+            </div>
+
+            <div class="check-item">
+                <span class="check">?</span>
+                <span>Estás disponible para todos, pero emocionalmente no tienes espacio para ti.</span>
+            </div>
+
+        </div>
+
+        <p class="qualification-note">
+            Si respondiste que sí a 3 o más, sigue leyendo.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- PROBLEM -->
+
+<section class="problem">
+
+    <div class="container">
+
+        <div class="center">
+
+            <div class="section-label">
+                COMPRENDER LO QUE TE PASA
+            </div>
+
+            <h2 class="section-title">
+                El cansancio de no poder apagar tu mente.
+            </h2>
+
+        </div>
+
+
+        <div class="problem-box">
+
+            <p>
+                Hay días en los que no ha pasado nada extraordinario, pero terminas agotado. Repasas lo que dijiste, anticipas lo que podría salir mal y te cuesta disfrutar incluso cuando todo está tranquilo.
+            </p>
+
+            <p>
+                Es el <strong>Ciclo de Sobrecarga Mental</strong>: un pensamiento activa una emoción, esa emoción alimenta otro pensamiento y terminas atrapado en la misma preocupación.
+            </p>
+
+            <p>
+                Quizás ya intentaste distraerte, ignorarlo o repetirte que todo estará bien. Pero sin aprender a identificar y cuestionar esos pensamientos, vuelves al mismo ciclo. No es falta de voluntad.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SOLUTION -->
+
+<section class="solution">
+
+    <div class="container solution-grid">
+
+        <div>
+
+            <div class="section-label">
+                EL MECANISMO
+            </div>
+
+            <h2 class="section-title">
+                Cómo funciona: Filtro de Realidad.
+            </h2>
+
+            <p>
+                Aprende a separar lo que piensas de lo que realmente está pasando.
+            </p>
+
+            <br>
+
+            <p>
+                No necesitas saber qué responder ni tener experiencia previa. La herramienta te presenta preguntas y ejercicios que puedes utilizar a tu propio ritmo.
+            </p>
+
+        </div>
+
+
+        <div class="solution-card">
+
+            <h3>Tu proceso dentro de Refugio Interior</h3>
+
+            <div class="solution-step">
+
+                <strong>01. Identificas</strong>
+
+                <p>
+                    Seleccionas lo que estás pensando y sintiendo.
+                </p>
+
+            </div>
+
+            <div class="solution-step">
+
+                <strong>02. Examinas</strong>
+
+                <p>
+                    Respondes preguntas guiadas para explorar otras perspectivas.
+                </p>
+
+            </div>
+
+            <div class="solution-step">
+
+                <strong>03. Practicas</strong>
+
+                <p>
+                    Recibes ejercicios concretos para desarrollar una respuesta más consciente.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- METHOD -->
+
+<section class="method">
+
+    <div class="container">
+
+        <div class="center">
+
+            <div class="section-label">
+                SIMPLE Y PRÁCTICO
+            </div>
+
+            <h2 class="section-title">
+                Cómo funciona el método.
+            </h2>
+
+            <p class="section-description">
+                Tres pasos para pasar del ruido mental a una respuesta más consciente.
+            </p>
+
+        </div>
+
+
+        <div class="method-grid">
+
+            <div class="method-card">
+
+                <div class="method-number">01</div>
+
+                <h3>IDENTIFICACIÓN</h3>
+
+                <p>
+                    Selecciona lo que estás experimentando: miedo, anticipación, culpa, pensamientos repetitivos o agotamiento emocional.
+                </p>
+
+            </div>
+
+
+            <div class="method-card">
+
+                <div class="method-number">02</div>
+
+                <h3>FILTRO INTELIGENTE</h3>
+
+                <p>
+                    La herramienta organiza tus respuestas y presenta preguntas específicas para examinar tus pensamientos.
+                </p>
+
+            </div>
+
+
+            <div class="method-card">
+
+                <div class="method-number">03</div>
+
+                <h3>RESPUESTA CONSCIENTE</h3>
+
+                <p>
+                    Recibe ejercicios prácticos, registra evidencias y construye nuevas formas de responder.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- URGENCY -->
+
+<section class="urgency">
+
+    <div class="container">
+
+        <div class="section-label">
+            UNA PAUSA PARA TI
+        </div>
+
+        <h2 class="section-title">
+            ¿Cuánto más vas a seguir cargando en silencio?
+        </h2>
+
+        <div class="urgency-text">
+
+            <p>
+                El agotamiento mental no desaparece automáticamente porque llegue otro día.
+            </p>
+
+            <p>
+                Cada vez que pospones atender lo que estás sintiendo, pierdes otra oportunidad de comprender tus propios patrones.
+            </p>
+
+            <p>
+                Puedes seguir repitiendo las mismas noches de preocupación o comenzar hoy a practicar una forma diferente de responder.
+            </p>
+
+        </div>
+
+        <a href="#comprar" class="btn">
+            QUIERO EMPEZAR HOY ?
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- BONUSES -->
+
+<section class="bonuses">
+
+    <div class="container">
+
+        <div class="center">
+
+            <div class="section-label">
+                HERRAMIENTAS ADICIONALES
+            </div>
+
+            <h2 class="section-title">
+                Cuatro herramientas para esos momentos específicos.
+            </h2>
+
+            <p class="section-description">
+                Cada herramienta tiene una función concreta dentro de tu experiencia.
+            </p>
+
+        </div>
+
+
+        <div class="bonus-grid">
+
+            <div class="bonus-card">
+
+                <div class="bonus-label">BONO 01</div>
+
+                <h3>Calma SOS</h3>
+
+                <strong>
+                    Cuando sientas que todo te sobrepasa, necesitas saber qué hacer.
+                </strong>
+
+                <p>
+                    Ejercicio interactivo de 30 segundos con respiración guiada y un círculo animado para ayudarte a hacer una pausa.
+                </p>
+
+            </div>
+
+
+            <div class="bonus-card">
+
+                <div class="bonus-label">BONO 02</div>
+
+                <h3>Desarmador de Catástrofes</h3>
+
+                <strong>
+                    Deja de tratar cada posibilidad como si fuera una certeza.
+                </strong>
+
+                <p>
+                    Generador de preguntas socráticas que te ayuda a examinar pensamientos sobre el futuro, el pasado y las relaciones.
+                </p>
+
+            </div>
+
+
+            <div class="bonus-card">
+
+                <div class="bonus-label">BONO 03</div>
+
+                <h3>Diario de Evidencias</h3>
+
+                <strong>
+                    Aprende a registrar también lo que contradice ese miedo.
+                </strong>
+
+                <p>
+                    Diario interactivo para registrar pensamientos, respuestas alternativas y evidencias de tu vida cotidiana.
+                </p>
+
+            </div>
+
+
+            <div class="bonus-card">
+
+                <div class="bonus-label">BONO 04</div>
+
+                <h3>Respira y Conecta</h3>
+
+                <strong>
+                    Cuando las palabras no alcanzan, haz una pausa.
+                </strong>
+
+                <p>
+                    Práctica interactiva de respiración 4-4-4 con frases cristianas centradas en la presencia de Jesús y sonido ambiental.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- TESTIMONIALS -->
+
+<section class="testimonials">
+
+    <div class="container">
+
+        <div class="center">
+
+            <div class="section-label">
+                EXPERIENCIAS
+            </div>
+
+            <h2 class="section-title">
+                Lo que están diciendo.
+            </h2>
+
+        </div>
+
+
+        <div class="testimonial-grid">
+
+            <div class="testimonial">
+
+                <small>ESPACIO PARA TESTIMONIO REAL</small>
+
+                <p>
+                    "Me costaba muchísimo dejar de pensar en lo que podía salir mal. Las preguntas me ayudaron a detenerme y ver las cosas de otra manera."
+                </p>
+
+                <strong>Nombre, edad</strong>
+
+            </div>
+
+
+            <div class="testimonial">
+
+                <small>ESPACIO PARA TESTIMONIO REAL</small>
+
+                <p>
+                    "Me gustó poder entrar cuando necesitaba una pausa. No tenía que saber qué escribir, la herramienta me iba guiando."
+                </p>
+
+                <strong>Nombre, edad</strong>
+
+            </div>
+
+
+            <div class="testimonial">
+
+                <small>ESPACIO PARA TESTIMONIO REAL</small>
+
+                <p>
+                    "El libro me ayudó a tomarme unos minutos para mí. Me di cuenta de cuánto tiempo llevaba ignorando lo que sentía."
+                </p>
+
+                <strong>Nombre, edad</strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ACCESS -->
+
+<section class="access" id="comprar">
+
+    <div class="container">
+
+        <div class="center">
+
+            <div class="section-label">
+                TODO LO QUE RECIBES
+            </div>
+
+            <h2 class="section-title">
+                Tu acceso a Refugio Interior.
+            </h2>
+
+            <p class="section-description">
+                Una experiencia digital con herramientas que puedes utilizar a tu propio ritmo.
+            </p>
+
+        </div>
+
+
+        <div class="access-box">
+
+            <div class="access-row">
+                <span>Refugio Interior, mini app</span>
+                <span>$37</span>
+            </div>
+
+            <div class="access-row">
+                <span>Libro digital de 21 días</span>
+                <span>$27</span>
+            </div>
+
+            <div class="access-row">
+                <span>Calma SOS</span>
+                <span>$8</span>
+            </div>
+
+            <div class="access-row">
+                <span>Desarmador de Catástrofes</span>
+                <span>$8</span>
+            </div>
+
+            <div class="access-row">
+                <span>Diario de Evidencias</span>
+                <span>$8</span>
+            </div>
+
+            <div class="access-row">
+                <span>Respira y Conecta</span>
+                <span>$8</span>
+            </div>
+
+
+            <div class="access-total">
+
+                <div class="access-row">
+                    <span class="total">VALOR TOTAL</span>
+                    <span class="total">$96 USD</span>
+                </div>
+
+            </div>
+
+
+            <div class="savings">
+                AHORRAS $69 USD
+            </div>
+
+            <div class="final-price">
+                $27 USD
+            </div>
+
+
+            <!-- ENLACE DE COMPRA -->
+
+            <div class="center">
+
+                <a href="TU_ENLACE_DE_HOTMART"
+                   class="btn"
+                   style="width:100%; max-width:400px;">
+
+                    QUIERO ACCEDER A REFUGIO INTERIOR ?
+
+                </a>
+
+                <p style="font-size:11px; margin-top:15px;">
+                    Compra digital · Precio en dólares estadounidenses
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- GUARANTEE -->
+
+<section class="guarantee">
+
+    <div class="container">
+
+        <div class="guarantee-card">
+
+            <div class="guarantee-icon">?</div>
+
+            <div class="section-label">
+                COMPRA CON TRANQUILIDAD
+            </div>
+
+            <h2 class="section-title">
+                Garantía de 30 días.
+            </h2>
+
+            <p>
+                Tienes 30 días para explorar Refugio Interior, utilizar sus herramientas y comenzar el programa.
+            </p>
+
+            <p>
+                Si lo pruebas y sientes que no es para ti, puedes solicitar la devolución de tu dinero dentro del plazo establecido.
+            </p>
+
+            <br>
+
+            <strong style="color:var(--sage-dark)">
+                Tu decisión, con tranquilidad.
+            </strong>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FAQ -->
+
+<section class="faq">
+
+    <div class="container">
+
+        <div class="center">
+
+            <div class="section-label">
+                ANTES DE COMENZAR
+            </div>
+
+            <h2 class="section-title">
+                Preguntas frecuentes.
+            </h2>
+
+        </div>
+
+
+        <div class="faq-container">
+
+
+            <details>
+
+                <summary>¿Cómo accedo?</summary>
+
+                <p>
+                    Después de realizar tu compra recibirás las instrucciones de acceso digital a Refugio Interior y al libro de 21 días.
+                </p>
+
+            </details>
+
+
+            <details>
+
+                <summary>¿Es un curso en video?</summary>
+
+                <p>
+                    No. Es una mini app interactiva con ejercicios guiados, preguntas y herramientas prácticas, acompañada de un libro digital.
+                </p>
+
+            </details>
+
+
+            <details>
+
+                <summary>¿Cuánto tiempo toma ver resultados?</summary>
+
+                <p>
+                    Puedes utilizar una herramienta desde el primer día. El programa de 21 días está diseñado para practicar y desarrollar nuevas respuestas progresivamente.
+                </p>
+
+            </details>
+
+
+            <details>
+
+                <summary>¿Necesito experiencia previa?</summary>
+
+                <p>
+                    No. Las preguntas y ejercicios están diseñados para guiarte paso a paso.
+                </p>
+
+            </details>
+
+
+            <details>
+
+                <summary>¿Funciona en el celular?</summary>
+
+                <p>
+                    Sí. Puedes utilizar la experiencia desde el navegador de tu celular o computadora.
+                </p>
+
+            </details>
+
+
+            <details>
+
+                <summary>¿Y si tengo pensamientos que no puedo controlar?</summary>
+
+                <p>
+                    Puedes comenzar identificándolos y utilizando las preguntas guiadas. Si son persistentes o afectan tu vida cotidiana, busca apoyo de un profesional de salud mental.
+                </p>
+
+            </details>
+
+
+            <details>
+
+                <summary>¿Tengo que ser cristiano para utilizarlo?</summary>
+
+                <p>
+                    No. Puedes elegir la versión secular o la experiencia cristiana, que incorpora versículos bíblicos y reflexiones basadas en la fe.
+                </p>
+
+            </details>
+
+
+            <details>
+
+                <summary>¿El programa sustituye la terapia psicológica?</summary>
+
+                <p>
+                    No. Es una herramienta educativa de bienestar y autoobservación. No sustituye evaluación, diagnóstico ni tratamiento profesional.
+                </p>
+
+            </details>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FINAL CTA -->
+
+<section class="final-section">
+
+    <div class="container">
+
+        <div class="section-label" style="color:#D6C19E">
+            ESTE ESPACIO TAMBIÉN ES PARA TI
+        </div>
+
+        <h2>
+            También mereces sentir paz contigo mismo.
+        </h2>
+
+        <p>
+            Merecías descansar sin tener que resolver mentalmente todos los problemas antes de dormir.
+            <br><br>
+            Merecías un espacio para escucharte, comprenderte y recordar que tus pensamientos no definen quién eres.
+            <br><br>
+            Hoy puedes comenzar a cuidarte de una manera diferente.
+        </p>
+
+        <a href="TU_ENLACE_DE_HOTMART" class="btn">
+            QUIERO ENCONTRAR MI REFUGIO INTERIOR ?
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="logo" style="color:white">
+        Refugio Interior
+    </div>
+
+    <p>Mind & Soul</p>
+
+    <p>
+        Un espacio para comprenderte y cultivar momentos de calma.
+    </p>
+
+    <p style="margin-top:20px">
+        © 2026 Refugio Interior. Todos los derechos reservados.
+    </p>
+
+    <p>
+        Herramienta educativa de bienestar emocional. No sustituye atención profesional.
+    </p>
+
+</footer>
+
+
+</body>
+</html>
