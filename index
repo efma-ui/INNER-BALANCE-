@@ -1,0 +1,1916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Inner Refuge | A Space to Find Your Calm</title>
+
+<meta name="description" content="Inner Refuge: an interactive wellness mini-app and a 21-day guided program to understand your thoughts, manage your emotions, and create moments of calm.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root {
+    --bg: #F8F5F0;
+    --cream: #F0EAE1;
+    --white: #FFFFFF;
+    --sage: #9EAD9A;
+    --sage-dark: #657B6A;
+    --sage-light: #E5EBE2;
+    --brown: #51483F;
+    --text: #48443F;
+    --muted: #827B73;
+    --gold: #C6A77A;
+    --dark: #35463C;
+    --border: #E7E0D7;
+    --shadow: 0 15px 45px rgba(65, 70, 60, .08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    line-height: 1.2;
+    color: var(--brown);
+}
+
+p {
+    color: var(--muted);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    width: min(1100px, 90%);
+    margin: auto;
+}
+
+section {
+    padding: 85px 0;
+}
+
+.section-label {
+    color: var(--sage-dark);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 11px;
+    font-weight: 800;
+    margin-bottom: 17px;
+}
+
+.section-title {
+    font-size: clamp(30px, 5vw, 46px);
+    margin-bottom: 20px;
+}
+
+.section-description {
+    max-width: 650px;
+    margin: auto;
+    font-size: 16px;
+}
+
+.center {
+    text-align: center;
+}
+
+/* BUTTONS */
+
+.btn {
+    display: inline-block;
+    padding: 17px 30px;
+    border-radius: 50px;
+    background: var(--sage-dark);
+    color: white;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: .5px;
+    text-align: center;
+    transition: .3s;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(75, 105, 82, .17);
+}
+
+.btn:hover {
+    background: var(--dark);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(75, 105, 82, .22);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--sage-dark);
+    color: var(--sage-dark);
+    box-shadow: none;
+}
+
+.btn-outline:hover {
+    color: white;
+}
+
+/* NAVBAR */
+
+.navbar {
+    padding: 19px 0;
+    background: rgba(248,245,240,.94);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    color: var(--dark);
+    font-weight: 600;
+    letter-spacing: .3px;
+}
+
+.logo span {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+}
+
+/* HERO */
+
+.hero {
+    padding: 85px 0 95px;
+    background:
+        radial-gradient(circle at 80% 20%, #E5EBDD 0%, transparent 35%),
+        linear-gradient(135deg, #F8F5F0, #F1EEE7);
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    align-items: center;
+    gap: 60px;
+}
+
+.hero h1 {
+    font-size: clamp(40px, 6vw, 65px);
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    color: var(--sage-dark);
+}
+
+.hero-subtitle {
+    font-size: 17px;
+    line-height: 1.8;
+    max-width: 540px;
+    margin-bottom: 30px;
+}
+
+.hero-tag {
+    display: inline-block;
+    background: var(--sage-light);
+    color: var(--sage-dark);
+    padding: 8px 15px;
+    border-radius: 30px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+}
+
+.hero-note {
+    font-size: 12px;
+    margin-top: 15px;
+}
+
+.hero-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 410px;
+}
+
+.hero-circle {
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #E8EDE4, #CFDCCB);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 25px 70px rgba(75, 105, 82, .14);
+    position: relative;
+}
+
+.hero-circle::before {
+    content: "";
+    position: absolute;
+    width: 255px;
+    height: 255px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,.8);
+}
+
+.hero-circle-content {
+    text-align: center;
+    z-index: 2;
+}
+
+.hero-symbol {
+    font-size: 75px;
+    color: var(--sage-dark);
+    line-height: 1;
+    margin-bottom: 15px;
+}
+
+.hero-circle-content h3 {
+    font-size: 27px;
+}
+
+.hero-circle-content p {
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin-top: 8px;
+}
+
+.floating-card {
+    position: absolute;
+    background: white;
+    padding: 15px 20px;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    font-size: 12px;
+    color: var(--brown);
+}
+
+.card-one {
+    top: 30px;
+    right: 0;
+}
+
+.card-two {
+    bottom: 35px;
+    left: 0;
+}
+
+/* POWER FEATURES */
+
+.power-section {
+    background: white;
+}
+
+.power-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 45px;
+}
+
+.power-card {
+    padding: 25px;
+    background: var(--bg);
+    border-radius: 17px;
+    display: flex;
+    gap: 17px;
+    align-items: flex-start;
+    border: 1px solid var(--border);
+    transition: .3s;
+}
+
+.power-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+}
+
+.power-icon {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    background: var(--sage-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--sage-dark);
+    font-size: 19px;
+}
+
+.power-card h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    margin-bottom: 6px;
+}
+
+.power-card p {
+    font-size: 13px;
+}
+
+/* PRICE */
+
+.price-section {
+    background: var(--dark);
+    color: white;
+    text-align: center;
+    padding: 75px 0;
+}
+
+.price-section h2 {
+    color: white;
+    font-size: 38px;
+}
+
+.price-section p {
+    color: #E0E7DF;
+    margin: 15px auto 25px;
+    max-width: 550px;
+}
+
+.old-price {
+    text-decoration: line-through;
+    opacity: .65;
+}
+
+.new-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 65px;
+    color: #E4D0AC;
+    font-weight: 700;
+    margin: 8px 0;
+}
+
+.price-section .btn {
+    background: #D6C19E;
+    color: var(--dark);
+}
+
+.price-section .btn:hover {
+    background: white;
+}
+
+/* CTA */
+
+.cta-inline {
+    text-align: center;
+    padding: 45px 15px;
+}
+
+/* QUALIFICATION */
+
+.qualification {
+    background: var(--cream);
+}
+
+.check-list {
+    max-width: 720px;
+    margin: 35px auto;
+    display: grid;
+    gap: 16px;
+}
+
+.check-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: white;
+    padding: 19px 22px;
+    border-radius: 13px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.025);
+}
+
+.check {
+    color: var(--sage-dark);
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.qualification-note {
+    text-align: center;
+    color: var(--sage-dark);
+    font-weight: 700;
+}
+
+/* PROBLEM */
+
+.problem {
+    background: white;
+}
+
+.problem-box {
+    max-width: 800px;
+    margin: 35px auto 0;
+    padding: 40px;
+    background: var(--bg);
+    border-radius: 20px;
+    border-left: 4px solid var(--sage);
+}
+
+.problem-box p {
+    margin-bottom: 17px;
+    font-size: 15px;
+}
+
+.problem-box p:last-child {
+    margin-bottom: 0;
+}
+
+/* SOLUTION */
+
+.solution {
+    background: var(--sage-light);
+}
+
+.solution-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 45px;
+    align-items: center;
+}
+
+.solution-card {
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: var(--shadow);
+}
+
+.solution-card h3 {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.solution-step {
+    padding: 17px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.solution-step:last-child {
+    border: none;
+}
+
+.solution-step strong {
+    display: block;
+    color: var(--sage-dark);
+    margin-bottom: 5px;
+}
+
+.solution-step p {
+    font-size: 13px;
+}
+
+/* METHOD */
+
+.method {
+    background: white;
+}
+
+.method-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-top: 45px;
+}
+
+.method-card {
+    padding: 30px 25px;
+    background: var(--bg);
+    border-radius: 18px;
+    border-top: 3px solid var(--sage);
+}
+
+.method-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    color: var(--sage);
+    margin-bottom: 12px;
+}
+
+.method-card h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+.method-card p {
+    font-size: 13px;
+}
+
+/* URGENCY */
+
+.urgency {
+    background: var(--cream);
+    text-align: center;
+}
+
+.urgency h2 {
+    max-width: 700px;
+    margin: auto;
+}
+
+.urgency-text {
+    max-width: 650px;
+    margin: 25px auto;
+}
+
+.urgency-text p {
+    margin-bottom: 12px;
+}
+
+/* BONUSES */
+
+.bonuses {
+    background: white;
+}
+
+.bonus-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    margin-top: 45px;
+}
+
+.bonus-card {
+    padding: 30px;
+    background: var(--bg);
+    border-radius: 18px;
+    border: 1px solid var(--border);
+    position: relative;
+    transition: .3s;
+}
+
+.bonus-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+.bonus-label {
+    color: var(--sage-dark);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.bonus-card h3 {
+    font-size: 24px;
+    margin-bottom: 12px;
+}
+
+.bonus-card strong {
+    display: block;
+    color: var(--brown);
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.bonus-card p {
+    font-size: 13px;
+}
+
+/* TESTIMONIALS */
+
+.testimonials {
+    background: var(--sage-light);
+}
+
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.testimonial {
+    background: white;
+    border-radius: 18px;
+    padding: 25px;
+}
+
+.testimonial small {
+    color: var(--sage-dark);
+    font-weight: 800;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.testimonial p {
+    font-size: 14px;
+    margin: 15px 0;
+    color: var(--brown);
+    font-style: italic;
+}
+
+.testimonial strong {
+    font-size: 12px;
+}
+
+/* ACCESS */
+
+.access {
+    background: white;
+}
+
+.access-box {
+    max-width: 700px;
+    margin: 40px auto;
+    background: var(--bg);
+    border-radius: 20px;
+    padding: 35px;
+    border: 1px solid var(--border);
+}
+
+.access-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+}
+
+.access-row:last-of-type {
+    border: none;
+}
+
+.access-row span:last-child {
+    font-weight: 700;
+    color: var(--sage-dark);
+}
+
+.access-total {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid var(--sage);
+}
+
+.access-total .total {
+    font-size: 19px;
+    font-weight: 800;
+    color: var(--brown);
+}
+
+.savings {
+    text-align: center;
+    margin-top: 30px;
+    color: var(--sage-dark);
+    font-weight: 800;
+}
+
+.final-price {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    color: var(--dark);
+    margin: 10px 0 25px;
+}
+
+/* GUARANTEE */
+
+.guarantee {
+    background: var(--cream);
+}
+
+.guarantee-card {
+    max-width: 760px;
+    margin: auto;
+    text-align: center;
+    padding: 45px;
+    background: white;
+    border-radius: 22px;
+    box-shadow: var(--shadow);
+}
+
+.guarantee-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.guarantee-card p {
+    margin-top: 15px;
+}
+
+/* FAQ */
+
+.faq {
+    background: white;
+}
+
+.faq-container {
+    max-width: 800px;
+    margin: 40px auto 0;
+}
+
+details {
+    border-bottom: 1px solid var(--border);
+    padding: 20px 5px;
+}
+
+summary {
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--brown);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+summary::after {
+    content: "+";
+    color: var(--sage-dark);
+    font-size: 20px;
+}
+
+details[open] summary::after {
+    content: "−";
+}
+
+details p {
+    margin-top: 15px;
+    font-size: 14px;
+    max-width: 700px;
+}
+
+/* FINAL */
+
+.final-section {
+    background:
+        radial-gradient(circle at 50% 0%, #637968, transparent 65%),
+        var(--dark);
+    padding: 100px 0;
+    text-align: center;
+}
+
+.final-section h2 {
+    color: white;
+    font-size: clamp(34px, 5vw, 49px);
+    max-width: 750px;
+    margin: auto;
+}
+
+.final-section p {
+    color: #E5EAE3;
+    margin: 25px auto;
+    max-width: 600px;
+}
+
+.final-section .btn {
+    background: #D6C19E;
+    color: var(--dark);
+}
+
+.final-section .btn:hover {
+    background: white;
+}
+
+/* FOOTER */
+
+footer {
+    background: #29382F;
+    text-align: center;
+    padding: 35px 15px;
+}
+
+footer p {
+    font-size: 11px;
+    color: #C5CEC5;
+    margin: 6px;
+}
+
+footer a {
+    color: #E5D4B5;
+}
+
+/* ANIMATIONS */
+
+.fade-up {
+    animation: fadeUp .8s ease both;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 800px) {
+
+    section {
+        padding: 65px 0;
+    }
+
+    .hero {
+        padding: 60px 0;
+    }
+
+    .hero-grid,
+    .solution-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .hero h1 {
+        font-size: 43px;
+    }
+
+    .hero-visual {
+        min-height: 350px;
+    }
+
+    .hero-circle {
+        width: 270px;
+        height: 270px;
+    }
+
+    .hero-circle::before {
+        width: 220px;
+        height: 220px;
+    }
+
+    .floating-card {
+        font-size: 10px;
+    }
+
+    .power-grid,
+    .bonus-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .method-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .testimonial-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .price-section h2 {
+        font-size: 31px;
+    }
+
+    .access-box {
+        padding: 22px;
+    }
+
+    .guarantee-card {
+        padding: 30px 22px;
+    }
+
+    .nav-inner .btn {
+        padding: 12px 17px;
+        font-size: 10px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+}
+
+@media(max-width: 380px) {
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .new-price {
+        font-size: 55px;
+    }
+
+    .floating-card {
+        padding: 10px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+    <div class="container nav-inner">
+
+        <a href="#" class="logo">
+            Inner Refuge
+            <span>Mind & Soul</span>
+        </a>
+
+        <a href="#purchase" class="btn">
+            GET ACCESS
+        </a>
+
+    </div>
+</nav>
+
+
+<!-- HERO -->
+
+<header class="hero">
+
+    <div class="container hero-grid">
+
+        <div class="fade-up">
+
+            <div class="hero-tag">
+                MIND & SOUL EXPERIENCE
+            </div>
+
+            <h1>
+                Stop feeling exhausted by <span>your own mind.</span>
+            </h1>
+
+            <p class="hero-subtitle">
+                An interactive mini-app that helps you identify the thoughts draining your energy and guides you toward calmer responses, paired with a practical 21-day program.
+            </p>
+
+            <a href="#purchase" class="btn">
+                I WANT TO FIND MY CALM →
+            </a>
+
+            <p class="hero-note">
+                Practical tools · Christian and secular versions · Digital access
+            </p>
+
+        </div>
+
+
+        <div class="hero-visual">
+
+            <div class="hero-circle">
+
+                <div class="hero-circle-content">
+
+                    <div class="hero-symbol">✧</div>
+
+                    <h3>Inner</h3>
+
+                    <p>REFUGE</p>
+
+                </div>
+
+            </div>
+
+            <div class="floating-card card-one">
+                ✧ A moment just for you
+            </div>
+
+            <div class="floating-card card-two">
+                ♡ Your space for calm
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- POWER FEATURES -->
+
+<section class="power-section">
+
+    <div class="container">
+
+        <div class="center">
+
+            <div class="section-label">
+                YOUR PERSONAL SPACE
+            </div>
+
+            <h2 class="section-title">
+                Tools for the moments when your mind won't slow down.
+            </h2>
+
+        </div>
+
+
+        <div class="power-grid">
+
+            <div class="power-card">
+
+                <div class="power-icon">◎</div>
+
+                <div>
+                    <h3>Thought Filter</h3>
+
+                    <p>
+                        Recognize when you're confusing fear with reality.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="power-card">
+
+                <div class="power-icon">✧</div>
+
+                <div>
+                    <h3>Overthinking Cycle</h3>
+
+                    <p>
+                        Recognize the patterns that keep your worries going.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="power-card">
+
+                <div class="power-icon">♡</div>
+
+                <div>
+                    <h3>Calm SOS</h3>
+
+                    <p>
+                        A guided 30-second exercise to help you pause and reset.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="power-card">
+
+                <div class="power-icon">◇</div>
+
+                <div>
+                    <h3>Socratic Questions</h3>
+
+                    <p>
+                        Explore your thoughts through questions that help you consider different perspectives.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="power-card">
+
+                <div class="power-icon">☼</div>
+
+                <div>
+                    <h3>21-Day Program</h3>
+
+                    <p>
+                        Practical exercises to help you develop healthier emotional responses.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="power-card">
+
+                <div class="power-icon">✝</div>
+
+                <div>
+                    <h3>Two Experiences</h3>
+
+                    <p>
+                        Choose a Christian version with biblical guidance or a secular version.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PRICE -->
+
+<section class="price-section">
+
+    <div class="container">
+
+        <div class="section-label" style="color:#D6C19E">
+            YOUR NEW PERSONAL SPACE
+        </div>
+
+        <h2>Your well-being deserves a place, too.</h2>
+
+        <p>
+            Get the interactive mini-app, the 21-day digital book, and four additional tools.
+        </p>
+
+        <div class="old-price">
+            Reference Value: $97 USD
+        </div>
+
+        <div class="new-price">
+            $27
+        </div>
+
+        <p>Digital access to all included resources.</p>
+
+        <a href="#purchase" class="btn">
+            I WANT ACCESS →
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- QUALIFICATION -->
+
+<section class="qualification">
+
+    <div class="container">
+
+        <div class="center">
+
+            <div class="section-label">
+                DOES THIS SOUND FAMILIAR?
+            </div>
+
+            <h2 class="section-title">
+                Is this for me?
+            </h2>
+
+            <p class="section-description">
+                You may recognize yourself in more than one of these situations.
+            </p>
+
+        </div>
+
+
+        <div class="check-list">
+
+            <div class="check-item">
+                <span class="check">✓</span>
+                <span>You go to bed exhausted, but your mind keeps replaying conversations and problems.</span>
+            </div>
+
+            <div class="check-item">
+                <span class="check">✓</span>
+                <span>You spend too much time worrying about things that haven't even happened.</span>
+            </div>
+
+            <div class="check-item">
+                <span class="check">✓</span>
+                <span>You tell yourself to calm down, but you don't know how.</span>
+            </div>
+
+            <div class="check-item">
+                <span class="check">✓</span>
+                <span>You're always there for everyone else, but you have no emotional space left for yourself.</span>
+            </div>
+
+        </div>
+
+        <p class="qualification-note">
+            If you answered yes to 3 or more, keep reading.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- PROBLEM -->
+
+<section class="problem">
+
+    <div class="container">
+
+        <div class="center">
+
+            <div class="section-label">
+                UNDERSTANDING WHAT'S HAPPENING
+            </div>
+
+            <h2 class="section-title">
+                The exhaustion of never being able to quiet your mind.
+            </h2>
+
+        </div>
+
+
+        <div class="problem-box">
+
+            <p>
+                Some days, nothing particularly bad happens, yet you end the day feeling drained. You replay what you said, anticipate everything that could go wrong, and struggle to enjoy even the moments when everything seems fine.
+            </p>
+
+            <p>
+                This is the <strong>Mental Overload Cycle</strong>: one thought triggers an emotion, that emotion fuels another thought, and before you know it, you're trapped in the same worry again.
+            </p>
+
+            <p>
+                Maybe you've tried distracting yourself, ignoring the thoughts, or simply telling yourself everything will be okay. But without learning to recognize and question those thoughts, the same cycle keeps returning. It's not a lack of willpower.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SOLUTION -->
+
+<section class="solution">
+
+    <div class="container solution-grid">
+
+        <div>
+
+            <div class="section-label">
+                THE METHOD
+            </div>
+
+            <h2 class="section-title">
+                How It Works: The Reality Filter.
+            </h2>
+
+            <p>
+                Learn to separate what you're thinking from what's actually happening.
+            </p>
+
+            <br>
+
+            <p>
+                You don't need to know what to say or have any previous experience. The tool provides guided questions and exercises you can use at your own pace.
+            </p>
+
+        </div>
+
+
+        <div class="solution-card">
+
+            <h3>Your Process Inside Inner Refuge</h3>
+
+            <div class="solution-step">
+
+                <strong>01. Identify</strong>
+
+                <p>
+                    Select what you're thinking and feeling.
+                </p>
+
+            </div>
+
+            <div class="solution-step">
+
+                <strong>02. Examine</strong>
+
+                <p>
+                    Answer guided questions to explore different perspectives.
+                </p>
+
+            </div>
+
+            <div class="solution-step">
+
+                <strong>03. Practice</strong>
+
+                <p>
+                    Receive practical exercises to develop more intentional responses.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- METHOD -->
+
+<section class="method">
+
+    <div class="container">
+
+        <div class="center">
+
+            <div class="section-label">
+                SIMPLE AND PRACTICAL
+            </div>
+
+            <h2 class="section-title">
+                How the Method Works.
+            </h2>
+
+            <p class="section-description">
+                Three steps to move from mental noise toward more intentional responses.
+            </p>
+
+        </div>
+
+
+        <div class="method-grid">
+
+            <div class="method-card">
+
+                <div class="method-number">01</div>
+
+                <h3>IDENTIFICATION</h3>
+
+                <p>
+                    Select what you're experiencing: fear, anticipation, guilt, repetitive thoughts, or emotional exhaustion.
+                </p>
+
+            </div>
+
+
+            <div class="method-card">
+
+                <div class="method-number">02</div>
+
+                <h3>SMART FILTER</h3>
+
+                <p>
+                    The tool organizes your answers and presents specific questions to help you examine your thoughts.
+                </p>
+
+            </div>
+
+
+            <div class="method-card">
+
+                <div class="method-number">03</div>
+
+                <h3>INTENTIONAL RESPONSE</h3>
+
+                <p>
+                    Receive practical exercises, record evidence, and develop new ways to respond.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- URGENCY -->
+
+<section class="urgency">
+
+    <div class="container">
+
+        <div class="section-label">
+            TAKE A MOMENT FOR YOURSELF
+        </div>
+
+        <h2 class="section-title">
+            How much longer will you carry everything in silence?
+        </h2>
+
+        <div class="urgency-text">
+
+            <p>
+                Mental exhaustion doesn't automatically disappear just because another day begins.
+            </p>
+
+            <p>
+                Every time you postpone addressing what you're feeling, you miss another opportunity to understand your own patterns.
+            </p>
+
+            <p>
+                You can keep repeating the same nights of worry, or you can start practicing a different way to respond today.
+            </p>
+
+        </div>
+
+        <a href="#purchase" class="btn">
+            I WANT TO START TODAY →
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- BONUSES -->
+
+<section class="bonuses">
+
+    <div class="container">
+
+        <div class="center">
+
+            <div class="section-label">
+                ADDITIONAL TOOLS
+            </div>
+
+            <h2 class="section-title">
+                Four tools for the moments that matter most.
+            </h2>
+
+            <p class="section-description">
+                Each tool serves a specific purpose within your experience.
+            </p>
+
+        </div>
+
+
+        <div class="bonus-grid">
+
+            <div class="bonus-card">
+
+                <div class="bonus-label">BONUS 01</div>
+
+                <h3>Calm SOS</h3>
+
+                <strong>
+                    When everything feels overwhelming, you need to know what to do next.
+                </strong>
+
+                <p>
+                    An interactive 30-second exercise with guided breathing and an animated circle to help you pause.
+                </p>
+
+            </div>
+
+
+            <div class="bonus-card">
+
+                <div class="bonus-label">BONUS 02</div>
+
+                <h3>Catastrophe Disarmer</h3>
+
+                <strong>
+                    Stop treating every possibility as if it were a certainty.
+                </strong>
+
+                <p>
+                    A Socratic question generator that helps you examine thoughts about the future, the past, and relationships.
+                </p>
+
+            </div>
+
+
+            <div class="bonus-card">
+
+                <div class="bonus-label">BONUS 03</div>
+
+                <h3>Evidence Journal</h3>
+
+                <strong>
+                    Learn to recognize the evidence that challenges your fears, too.
+                </strong>
+
+                <p>
+                    An interactive journal to record thoughts, alternative responses, and evidence from everyday life.
+                </p>
+
+            </div>
+
+
+            <div class="bonus-card">
+
+                <div class="bonus-label">BONUS 04</div>
+
+                <h3>Breathe & Connect</h3>
+
+                <strong>
+                    When words aren't enough, give yourself a moment to pause.
+                </strong>
+
+                <p>
+                    An interactive 4-4-4 breathing exercise with Christian reflections centered on the presence of Jesus and ambient sounds.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- TESTIMONIALS -->
+
+<section class="testimonials">
+
+    <div class="container">
+
+        <div class="center">
+
+            <div class="section-label">
+                REAL EXPERIENCES
+            </div>
+
+            <h2 class="section-title">
+                What people are saying.
+            </h2>
+
+        </div>
+
+
+        <div class="testimonial-grid">
+
+            <div class="testimonial">
+
+                <small>PLACEHOLDER: REPLACE WITH REAL TESTIMONIAL</small>
+
+                <p>
+                    "I used to spend so much time worrying about everything that could go wrong. The questions helped me pause and look at things differently."
+                </p>
+
+                <strong>Name, Age</strong>
+
+            </div>
+
+
+            <div class="testimonial">
+
+                <small>PLACEHOLDER: REPLACE WITH REAL TESTIMONIAL</small>
+
+                <p>
+                    "I liked being able to open the tool whenever I needed a moment for myself. I didn't have to know what to write. It guided me through the process."
+                </p>
+
+                <strong>Name, Age</strong>
+
+            </div>
+
+
+            <div class="testimonial">
+
+                <small>PLACEHOLDER: REPLACE WITH REAL TESTIMONIAL</small>
+
+                <p>
+                    "The book helped me take a few minutes for myself every day. I realized how long I had been ignoring my own feelings."
+                </p>
+
+                <strong>Name, Age</strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ACCESS -->
+
+<section class="access" id="purchase">
+
+    <div class="container">
+
+        <div class="center">
+
+            <div class="section-label">
+                EVERYTHING YOU GET
+            </div>
+
+            <h2 class="section-title">
+                Your Inner Refuge Access.
+            </h2>
+
+            <p class="section-description">
+                A digital experience with practical tools you can use at your own pace.
+            </p>
+
+        </div>
+
+
+        <div class="access-box">
+
+            <div class="access-row">
+                <span>Inner Refuge Mini-App</span>
+                <span>$37</span>
+            </div>
+
+            <div class="access-row">
+                <span>21-Day Digital Book</span>
+                <span>$27</span>
+            </div>
+
+            <div class="access-row">
+                <span>Calm SOS</span>
+                <span>$8</span>
+            </div>
+
+            <div class="access-row">
+                <span>Catastrophe Disarmer</span>
+                <span>$8</span>
+            </div>
+
+            <div class="access-row">
+                <span>Evidence Journal</span>
+                <span>$8</span>
+            </div>
+
+            <div class="access-row">
+                <span>Breathe & Connect</span>
+                <span>$8</span>
+            </div>
+
+
+            <div class="access-total">
+
+                <div class="access-row">
+                    <span class="total">TOTAL VALUE</span>
+                    <span class="total">$96 USD</span>
+                </div>
+
+            </div>
+
+
+            <div class="savings">
+                YOU SAVE $69 USD
+            </div>
+
+            <div class="final-price">
+                $27 USD
+            </div>
+
+
+            <!-- PURCHASE LINK -->
+
+            <div class="center">
+
+                <a href="YOUR_HOTMART_PURCHASE_LINK"
+                   class="btn"
+                   style="width:100%; max-width:400px;">
+
+                    GET ACCESS TO INNER REFUGE →
+
+                </a>
+
+                <p style="font-size:11px; margin-top:15px;">
+                    Digital purchase · Price in US dollars
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- GUARANTEE -->
+
+<section class="guarantee">
+
+    <div class="container">
+
+        <div class="guarantee-card">
+
+            <div class="guarantee-icon">♡</div>
+
+            <div class="section-label">
+                PURCHASE WITH CONFIDENCE
+            </div>
+
+            <h2 class="section-title">
+                30-Day Money-Back Guarantee.
+            </h2>
+
+            <p>
+                You have 30 days to explore Inner Refuge, use its tools, and begin the program.
+            </p>
+
+            <p>
+                If you try it and feel it's not right for you, you can request a refund within the applicable guarantee period.
+            </p>
+
+            <br>
+
+            <strong style="color:var(--sage-dark)">
+                Your decision, your peace of mind.
+            </strong>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FAQ -->
+
+<section class="faq">
+
+    <div class="container">
+
+        <div class="center">
+
+            <div class="section-label">
+                BEFORE YOU BEGIN
+            </div>
+
+            <h2 class="section-title">
+                Frequently Asked Questions.
+            </h2>
+
+        </div>
+
+
+        <div class="faq-container">
+
+
+            <details>
+
+                <summary>How do I access Inner Refuge?</summary>
+
+                <p>
+                    After completing your purchase, you'll receive digital access instructions for Inner Refuge and the 21-day book.
+                </p>
+
+            </details>
+
+
+            <details>
+
+                <summary>Is this a video course?</summary>
+
+                <p>
+                    No. It's an interactive mini-app with guided exercises, questions, and practical tools, accompanied by a digital book.
+                </p>
+
+            </details>
+
+
+            <details>
+
+                <summary>How long does it take to see results?</summary>
+
+                <p>
+                    You can start using a tool on your first day. The 21-day program is designed to help you practice and gradually develop new responses.
+                </p>
+
+            </details>
+
+
+            <details>
+
+                <summary>Do I need any previous experience?</summary>
+
+                <p>
+                    No. The questions and exercises are designed to guide you step by step.
+                </p>
+
+            </details>
+
+
+            <details>
+
+                <summary>Does it work on my phone?</summary>
+
+                <p>
+                    Yes. You can use the experience through your phone or computer browser.
+                </p>
+
+            </details>
+
+
+            <details>
+
+                <summary>What if I have thoughts I can't control?</summary>
+
+                <p>
+                    You can start by identifying those thoughts and using the guided questions. If they persist or interfere with daily life, consider seeking support from a mental health professional.
+                </p>
+
+            </details>
+
+
+            <details>
+
+                <summary>Do I have to be Christian to use it?</summary>
+
+                <p>
+                    No. You can choose the secular version or the Christian experience, which incorporates Bible verses and faith-based reflections.
+                </p>
+
+            </details>
+
+
+            <details>
+
+                <summary>Does this program replace psychological therapy?</summary>
+
+                <p>
+                    No. It is an educational emotional wellness and self-reflection tool. It does not replace professional evaluation, diagnosis, or treatment.
+                </p>
+
+            </details>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FINAL CTA -->
+
+<section class="final-section">
+
+    <div class="container">
+
+        <div class="section-label" style="color:#D6C19E">
+            THIS SPACE IS FOR YOU, TOO
+        </div>
+
+        <h2>
+            You deserve to feel at peace with yourself, too.
+        </h2>
+
+        <p>
+            You deserve to rest without mentally solving every problem before going to sleep.
+            <br><br>
+            You deserve a space to listen to yourself, understand yourself, and remember that your thoughts do not define who you are.
+            <br><br>
+            Today, you can begin taking care of yourself in a different way.
+        </p>
+
+        <a href="YOUR_HOTMART_PURCHASE_LINK" class="btn">
+            I WANT TO FIND MY INNER REFUGE →
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="logo" style="color:white">
+        Inner Refuge
+    </div>
+
+    <p>Mind & Soul</p>
+
+    <p>
+        A space to understand yourself and cultivate moments of calm.
+    </p>
+
+    <p style="margin-top:20px">
+        © 2026 Inner Refuge. All rights reserved.
+    </p>
+
+    <p>
+        Educational emotional wellness tool. Not a substitute for professional care.
+    </p>
+
+</footer>
+
+
+</body>
+</html>
