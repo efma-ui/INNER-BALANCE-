@@ -300,6 +300,16 @@ main{
   margin:0 0 17px;
 }
 
+.section-instruction{
+  background: var(--soft);
+  border-left: 4px solid var(--indigo);
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
 .area-grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
@@ -342,23 +352,41 @@ main{
 }
 
 .pattern-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
+  display:flex;
+  flex-direction:column;
   gap:9px;
 }
 
-.pattern{
+.pattern-label{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
   border:1px solid var(--border);
   background:white;
   border-radius:13px;
-  padding:11px 12px;
+  padding:12px 14px;
   text-align:left;
   color:var(--text);
+  cursor:pointer;
+  transition:all 0.2s ease;
 }
 
-.pattern.selected{
+.pattern-label:hover{
+  border-color:#c7d2fe;
+  background:var(--indigo-soft);
+}
+
+.pattern-label.selected{
   border-color:var(--indigo);
   background:var(--indigo-soft);
+}
+
+.pattern-label input[type="checkbox"]{
+  margin-top:3px;
+  cursor:pointer;
+  width:18px;
+  height:18px;
+  accent-color:var(--indigo);
 }
 
 textarea,
@@ -688,6 +716,34 @@ label{
 }
 
 /* =========================
+   SOS FLOATING BUTTON
+========================= */
+
+.sos-float-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 99;
+  background: #dc2626;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.sos-float-btn:hover {
+  background: #b91c1c;
+  transform: scale(1.05);
+}
+
+/* =========================
    FOOTER
 ========================= */
 
@@ -911,6 +967,10 @@ label{
       🧠 Desglose Mente
     </h2>
 
+    <div class="section-instruction" id="instructionMind">
+      💡 <strong>Instrucción:</strong> Selecciona el área general en la que notas mayor inquietud para explorar el tipo de pensamiento presente.
+    </div>
+
     <p class="subtitle" id="mindSubtitle">
       Identifica qué tipo de pensamiento está apareciendo.
       No necesitas encontrar la explicación perfecta.
@@ -1020,6 +1080,10 @@ label{
       ¿Cuál de estos pensamientos se parece más al tuyo?
     </h3>
 
+    <div class="section-instruction" id="instructionPatterns">
+      💡 <strong>Instrucción:</strong> Marca con una casilla los pensamientos que reflejen lo que sientes. Puedes marcar varios o escribir con tus propias palabras.
+    </div>
+
     <p class="subtitle" id="patternsSubtitle">
       Puedes seleccionar más de uno.
     </p>
@@ -1105,6 +1169,10 @@ label{
     <h2 id="truthTitle">
       🔎 Filtro de Verdad
     </h2>
+
+    <div class="section-instruction" id="instructionTruth">
+      💡 <strong>Instrucción:</strong> Responde cada punto para separar lo que tu mente predice de los datos objetivos reales del momento.
+    </div>
 
     <p class="subtitle" id="truthSubtitle">
       No intenta convencerte de que todo estará bien.
@@ -1222,6 +1290,10 @@ label{
     <h2 id="calmTitle">
       🌿 Pausa de Calma
     </h2>
+
+    <div class="section-instruction" id="instructionCalm">
+      💡 <strong>Instrucción:</strong> Evalúa tu nivel de intensidad, inicia el ejercicio guiado de respiración y observa los cambios en tu cuerpo.
+    </div>
 
     <p class="subtitle" id="calmSubtitle">
       Una pausa breve para bajar el ritmo y observar lo que está pasando,
@@ -1357,6 +1429,10 @@ label{
       📖 Promesas para este momento
     </h2>
 
+    <div class="section-instruction" id="instructionPromises">
+      💡 <strong>Instrucción:</strong> Lee lentamente estas palabras de anclaje para meditar en ellas según el momento que atraviesas.
+    </div>
+
     <p class="subtitle" id="promisesSubtitle">
       No son respuestas mágicas ni una garantía de resultados.
       Son palabras que puedes leer lentamente y considerar.
@@ -1380,6 +1456,10 @@ label{
     <h2 id="evidenceTitle">
       📝 Evidencia
     </h2>
+
+    <div class="section-instruction" id="instructionEvidence">
+      💡 <strong>Instrucción:</strong> Distingue estrictamente los hechos reales de las interpretaciones que añade la mente.
+    </div>
 
     <p class="subtitle" id="evidenceSubtitle">
       Separa lo que sabes de lo que tu mente está interpretando.
@@ -1455,6 +1535,10 @@ label{
       ⚖️ Carga física y mental
     </h2>
 
+    <div class="section-instruction" id="instructionLoad">
+      💡 <strong>Instrucción:</strong> Revisa si factores corporales básicos están afectando tu nivel actual de activación o estrés.
+    </div>
+
     <p class="subtitle" id="loadSubtitle">
       A veces el nivel de activación también puede verse influido
       por factores básicos del cuerpo y del ritmo diario.
@@ -1489,7 +1573,7 @@ label{
 
       <label class="check-option">
         <input type="checkbox" id="loadFood">
-        <span id="loadFood">
+        <span id="loadFoodText">
           Me salté una comida o comí muy poco
         </span>
       </label>
@@ -1520,11 +1604,18 @@ label{
 
 </main>
 
+<!-- =====================================================
+     SOS BUTTON
+===================================================== -->
+<button class="sos-float-btn" onclick="showSection('calm', document.querySelector('[data-section=\'calm\']'))">
+  🚨 SOS Calm Pause
+</button>
+
 
 <div
   class="disclaimer"
   id="disclaimer">
-  INNER PAUSE  es una herramienta de reflexión, observación y regulación emocional.
+  INNER PAUSE es una herramienta de reflexión, observación y regulación emocional.
   No proporciona diagnóstico, psicoterapia, tratamiento médico ni garantiza resultados.
 </div>
 
@@ -1761,9 +1852,16 @@ const translations = {
     sleepText:"Dormí poco o mal",
     waterText:"He tomado poca agua",
     screensText:"He pasado demasiado tiempo frente a pantallas",
-    foodText:"Me salté una comida o comí muy poco",
+    loadFoodText:"Me salté una comida o comí muy poco",
     loadButton:"Revisar carga",
-    disclaimer:"INNER PAUSEes una herramienta de reflexión, observación y regulación emocional. No proporciona diagnóstico, psicoterapia, tratamiento médico ni garantiza resultados."
+    disclaimer:"INNER PAUSE es una herramienta de reflexión, observación y regulación emocional. No proporciona diagnóstico, psicoterapia, tratamiento médico ni garantiza resultados.",
+    instructionMind:"💡 <strong>Instrucción:</strong> Selecciona el área general en la que notas mayor inquietud para explorar el tipo de pensamiento presente.",
+    instructionPatterns:"💡 <strong>Instrucción:</strong> Marca con una casilla los pensamientos que reflejen lo que sientes. Puedes marcar varios o escribir con tus propias palabras.",
+    instructionTruth:"💡 <strong>Instrucción:</strong> Responde cada punto para separar lo que tu mente predice de los datos objetivos reales del momento.",
+    instructionCalm:"💡 <strong>Instrucción:</strong> Evalúa tu nivel de intensidad, inicia el ejercicio guiado de respiración y observa los cambios en tu cuerpo.",
+    instructionPromises:"💡 <strong>Instrucción:</strong> Lee lentamente estas palabras de anclaje para meditar en ellas según el momento que atraviesas.",
+    instructionEvidence:"💡 <strong>Instrucción:</strong> Distingue estrictamente los hechos reales de las interpretaciones que añade la mente.",
+    instructionLoad:"💡 <strong>Instrucción:</strong> Revisa si factores corporales básicos están afectando tu nivel actual de activación o estrés."
   },
   en:{
     subtitle:"Mind & Soul Tool",
@@ -1824,9 +1922,16 @@ const translations = {
     sleepText:"I slept too little or poorly",
     waterText:"I have had little water",
     screensText:"I have spent too much time on screens",
-    foodText:"I skipped a meal or ate very little",
+    loadFoodText:"I skipped a meal or ate very little",
     loadButton:"Review load",
-    disclaimer:"INNER PAUSE is a reflection, observation and emotional-regulation tool. It does not provide diagnosis, psychotherapy, medical treatment or guaranteed results."
+    disclaimer:"INNER PAUSE is a reflection, observation and emotional-regulation tool. It does not provide diagnosis, psychotherapy, medical treatment or guaranteed results.",
+    instructionMind:"💡 <strong>Instruction:</strong> Select the general area where you feel the most restlessness to explore the type of thought present.",
+    instructionPatterns:"💡 <strong>Instruction:</strong> Check the boxes next to the thoughts that reflect what you feel. You can select multiple or write in your own words.",
+    instructionTruth:"💡 <strong>Instruction:</strong> Answer each point to separate what your mind predicts from real objective data.",
+    instructionCalm:"💡 <strong>Instruction:</strong> Assess your intensity level, start the guided breathing exercise, and observe changes in your body.",
+    instructionPromises:"💡 <strong>Instruction:</strong> Slowly read these anchoring words to reflect on them according to your current moment.",
+    instructionEvidence:"💡 <strong>Instruction:</strong> Strictly distinguish actual facts from interpretations added by the mind.",
+    instructionLoad:"💡 <strong>Instruction:</strong> Check if basic physical factors are affecting your current level of activation or stress."
   }
 };
 
@@ -1921,7 +2026,7 @@ function setLanguage(lang){
   Object.keys(t).forEach(key=>{
     const element = document.getElementById(key);
     if(element){
-      element.textContent = t[key];
+      element.innerHTML = t[key];
     }
   });
 
@@ -2078,26 +2183,36 @@ function renderPatterns(){
   container.innerHTML = "";
 
   list.forEach(item=>{
-    const button = document.createElement("button");
-    button.className = "pattern";
+    const label = document.createElement("label");
+    label.className = "pattern-label";
+
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.value = item.id;
 
     if(selectedPatterns.includes(item.id)){
-      button.classList.add("selected");
+      checkbox.checked = true;
+      label.classList.add("selected");
     }
 
-    button.textContent = item[currentLanguage];
-
-    button.onclick = ()=>{
-      if(selectedPatterns.includes(item.id)){
-        selectedPatterns = selectedPatterns.filter(id=>id !== item.id);
-        button.classList.remove("selected");
+    checkbox.onchange = ()=>{
+      if(checkbox.checked){
+        if(!selectedPatterns.includes(item.id)){
+          selectedPatterns.push(item.id);
+        }
+        label.classList.add("selected");
       }else{
-        selectedPatterns.push(item.id);
-        button.classList.add("selected");
+        selectedPatterns = selectedPatterns.filter(id=>id !== item.id);
+        label.classList.remove("selected");
       }
     };
 
-    container.appendChild(button);
+    const span = document.createElement("span");
+    span.textContent = item[currentLanguage];
+
+    label.appendChild(checkbox);
+    label.appendChild(span);
+    container.appendChild(label);
   });
 }
 
@@ -3095,5 +3210,3 @@ document.addEventListener(
 
 </body>
 </html>
-
-```
